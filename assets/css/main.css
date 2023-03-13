@@ -4687,3 +4687,11 @@ input, select, textarea {
 		}
 
 	}
+	.row {
+		display: flex;
+	  }
+	  
+	  .column {
+		flex: 40%;
+		padding: 5px;
+	  }

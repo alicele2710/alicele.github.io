@@ -19,22 +19,17 @@
 
 				<!-- Header -->
 					<header id="header">
-						<a href="index.html" class="logo">Massively</a>
+						<a href="index.html" class="logo">Alice Le</a>
 					</header>
 
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-							<li><a href="index.html">This is Massively</a></li>
-							<li class="active"><a href="generic.html">Generic Page</a></li>
-							<li><a href="elements.html">Elements Reference</a></li>
+							
+							<li class="active"><a href="generic.html">Adskate Creative Analytics</a></li>
+							
 						</ul>
-						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
+						
 					</nav>
 
 				<!-- Main -->
@@ -43,69 +38,57 @@
 						<!-- Post -->
 							<section class="post">
 								<header class="major">
-									<span class="date">April 25, 2017</span>
-									<h1>This is a<br />
-									Generic Page</h1>
-									<p>Aenean ornare velit lacus varius enim ullamcorper proin aliquam<br />
-									facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
-									amet nullam sed etiam veroeros.</p>
+									
+									<h1>About Adskate</h1>
+									<p>AdSkate is building cookieless solutions for the privacy-first world. Our technology enables businesses to select ad placements and optimize creative elements that drive successful conversions. Our Customer have seen a 15x increase in conversions and a 36% decrease in ad spend.</p>
 								</header>
-								<div class="image main"><img src="images/pic01.jpg" alt="" /></div>
-								<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur sapien risus, commodo eget turpis at, elementum convallis enim turpis, lorem ipsum dolor sit amet nullam.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus. Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum.</p>
+								<h2>Identify product requirements</h2>
+								<p>The advertising industry is currently witnessing a surge in the use of AI, with numerous startups venturing into the field. As a result, Adskate must act swiftly by introducing its MVP to identify its product-market fit at the earliest. Prioritizing features in a ruthless manner is crucial to expedite the process, as it will enable Adskate to gather valuable feedback from its initial customers and reduce time-to-market. Below are the MVP components I proposed:</p>
+								<ol><li>AI algorithm: Adskate's advanced AI algorithm uses natural language processing (NLP) and computer vision to analyze campaign data and provide actionable insights.
+								</li>
+									<li>Advertiser data input: Advertisers can upload their campaign performance logs and ad creative to Adskate.  </li>
+									<li>Ad creative analysis: Advertisers can access detailed analysis of their ad creative's performance.
+									</li>
+									<li>Campaign optimization recommendations: Adskate provides advertisers with recommendations for optimizing their campaigns based on the analytics results.
+									</li></ol>
+									
+
+								<h2>System Design</h2>
+								<p>The front-end application allows advertisers to upload their data and access reports. The data will be stored in an object storage like S3 bucket. As soon as the data is uploaded, our algorithm processes it, then generate multiple reports regarding CTA, object, and audience. These reports are stored as JSON objects in RDS relational database along with the links pointing to advertiser-uploaded data in S3 bucket. We serve the reports to customers via an HTML server.
+
+									When advertisers log in and request a report with their job_id, 
+									the API immediately sends a request to the HTML server, which returns the report to the advertiser. <a href="#" class="image fit"><img src="images/system-design.png"></a></p>
+								
+								<h2>UI/UX Design on Figma, Webflow, and Bubble.io</h2>
+								<p><h4>The report interface</h4>
+									<a href="#" class="image fit"><img src="images/Adskate.jpg"></a>
+								<ol><li>
+									Two dropdowns allow advertisers to slice their data by different criteria, such as geography or campaign type, and to choose the key metric they want to optimize for.</li>
+									<li>A side navigation panel lets users switch between different views, including CTA analysis, audience insights, and object performance.</li>
+									<li>The comparison screen displays good and bad creative side by side, along with performance statistics highlighting the differences between them.</li>
+									<li>Recommendations for optimizing campaigns, as well as an option to download a list of creative assets that need to be improved.
+								</li></ol></p>
+								<p><h4>Build web application</h4>
+									<div class="row">
+									
+									<div class="column"><img src="images/signup.jpg" style="width:100%"></div>
+									<div class="column"><img src="images/upload.jpg" style="width:100%"></div>
+									</div>	
+									<ol><li>
+									Registration and login (including single sign-on, password recovery, etc.)</li>
+									<li>Account configuration where users provide their company name and job role.</li>
+									<li>Data upload: Upon uploading a file, users will receive a notification confirming receipt and a unique job ID which they will need to access their report later.</li>
+									</ol></p>
+								
+								<h2>Build REST API and database on AWS</h2>
+								<p>I created a REST API that enables communication between the front-end and our back-end. The main function of this API is to receive files uploaded by users and then upload them to an S3 bucket. The name of the folder will correspond to the name of the company, while the file name will be the unique job ID.</p>
+								<p>I also integrated the Bubble.io database with RDS using an SQL connector, to ensure that user data is updated accurately.</p>
 							</section>
 
 					</div>
 
 				<!-- Footer -->
-					<footer id="footer">
-						<section>
-							<form method="post" action="#">
-								<div class="fields">
-									<div class="field">
-										<label for="name">Name</label>
-										<input type="text" name="name" id="name" />
-									</div>
-									<div class="field">
-										<label for="email">Email</label>
-										<input type="text" name="email" id="email" />
-									</div>
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" rows="3"></textarea>
-									</div>
-								</div>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</form>
-						</section>
-						<section class="split contact">
-							<section class="alt">
-								<h3>Address</h3>
-								<p>1234 Somewhere Road #87257<br />
-								Nashville, TN 00000-0000</p>
-							</section>
-							<section>
-								<h3>Phone</h3>
-								<p><a href="#">(000) 000-0000</a></p>
-							</section>
-							<section>
-								<h3>Email</h3>
-								<p><a href="#">info@untitled.tld</a></p>
-							</section>
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-									<li><a href="#" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-						</section>
-					</footer>
-
+					
 				<!-- Copyright -->
 					<div id="copyright">
 						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
